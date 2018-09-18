@@ -17,10 +17,11 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 public class MainActivity extends AppCompatActivity {
     private static final String serverUri = "tcp://m10.cloudmqtt.com:12182";
+    private static final String serverUri2 = "tcp://10.3.141.1:8989";
     private static final String userName = "wymecqjv";
     private static final String password = "PBnK_BZnwDZ3";
     private static final String publishMessage = "android";
-    private static final String publishTopic = "soa/expo3";
+    private static final String publishTopic = "soaexpo3";
     private Button button1;
     private MqttAndroidClient client;
 
@@ -51,14 +52,14 @@ public class MainActivity extends AppCompatActivity {
         });
         String clientId = MqttClient.generateClientId();
         this.client =
-                new MqttAndroidClient(this.getApplicationContext(), this.serverUri,
+                new MqttAndroidClient(this.getApplicationContext(), this.serverUri2,
                         clientId);
 
         try {
             MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
             mqttConnectOptions.setCleanSession(false);
-            mqttConnectOptions.setUserName(userName);
-            mqttConnectOptions.setPassword(password.toCharArray());
+            //mqttConnectOptions.setUserName(userName);
+            //mqttConnectOptions.setPassword(password.toCharArray());
             IMqttToken token = client.connect(mqttConnectOptions);
             token.setActionCallback(new IMqttActionListener() {
                 @Override
